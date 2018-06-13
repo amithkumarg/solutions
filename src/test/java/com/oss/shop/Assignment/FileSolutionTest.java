@@ -47,5 +47,6 @@ public class FileSolutionTest {
 		FileWriter fileWriter = new FileWriter(file);
 		new FileSolution().fileHandler(file);
 		fileWriter.close();
+		file.deleteOnExit();
 	}
 }
