@@ -22,7 +22,6 @@ public class FileSolution {
 }
 
 class LOG{
-	static void warn(String... strings){
-		System.out.println(strings);
+	static void warn(String... strings){		
 	}
 }
