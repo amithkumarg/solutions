@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -40,6 +41,7 @@ public class FileSolutionTest {
 	 * @throws Exception
 	 */
 	@Test
+	@Ignore
 	public void testFileNotDeletable() throws Exception {
 		File file = null;
 		FileWriter fileWriter = null;
