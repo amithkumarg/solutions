@@ -1,4 +1,4 @@
-package com.oss.shop.Assignment;
+package com.oss.shop.assignment;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,9 +10,9 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 public class JsonArrayParse {
 
     public static void main(String[] args){
-        String testJson = "[ { \"Name\": \"jdbc.connection.driver_class\", \"Value\": \"com.mysql.jdbc.Driver\" }, { \"Name\": \"password\", \"Value\": \"abc\" }, { \"Name\": \"url\", \"Value\": \"jdbc:mysql://localhost:3306/test?autoReconnect=true&useSSL=false\" }, { \"Name\": \"username\", \"Value\": \"abc\" } ]";
-        System.out.println(testJson);
-        parseJson(testJson);
+        //String testJson = "[ { \"Name\": \"jdbc.connection.driver_class\", \"Value\": \"com.mysql.jdbc.Driver\" }, { \"Name\": \"password\", \"Value\": \"abc\" }, { \"Name\": \"url\", \"Value\": \"jdbc:mysql://localhost:3306/test?autoReconnect=true&useSSL=false\" }, { \"Name\": \"username\", \"Value\": \"abc\" } ]";
+        System.out.println(args[0]);
+        parseJson(args[0]);
     }
 
     private static void parseJson(String dbConnectionValues) {

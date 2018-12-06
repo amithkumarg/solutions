@@ -1,4 +1,4 @@
-package com.oss.shop.Assignment;
+package com.oss.shop.assignment;
 
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 import java.lang.annotation.ElementType;

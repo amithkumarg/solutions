@@ -1,4 +1,4 @@
-package com.oss.shop.Assignment;
+package com.oss.shop.assignment;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -19,8 +19,8 @@ import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 
 public class EncodedXMLRead {
-	private static final String IncorrectXml = "<?xml version=\'1.0\' standalone=\'no\' ?>\n<x>Motörhead</x>";
-	private static final String CorrectXml = "<?xml version=\'1.0\' encoding=\'ISO-8859-1\' standalone=\'no\' ?>\n<x>Motörhead</x>";
+	private static final String IncorrectXml = "<?xml version=\'1.0\' standalone=\'no\' ?>\n<x>Motï¿½rhead</x>";
+	private static final String CorrectXml = "<?xml version=\'1.0\' encoding=\'ISO-8859-1\' standalone=\'no\' ?>\n<x>Motï¿½rhead</x>";
 
 	public static void main(String[] args)
 			throws ParserConfigurationException, UnsupportedEncodingException, SAXException, IOException {

@@ -1,4 +1,4 @@
-package com.oss.shop.Assignment;
+package com.oss.shop.assignment;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

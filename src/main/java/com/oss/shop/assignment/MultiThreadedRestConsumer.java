@@ -1,8 +1,7 @@
-package com.oss.shop.Assignment;
+package com.oss.shop.assignment;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.StringReader;
 import java.io.StringWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;

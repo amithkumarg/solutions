@@ -1,4 +1,4 @@
-package com.oss.shop.Assignment;
+package com.oss.shop.assignment;
 
 import static org.mockito.BDDMockito.*;
 import java.io.File;

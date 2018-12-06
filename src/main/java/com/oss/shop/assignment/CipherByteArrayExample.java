@@ -1,4 +1,4 @@
-package com.oss.shop.Assignment;
+package com.oss.shop.assignment;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
