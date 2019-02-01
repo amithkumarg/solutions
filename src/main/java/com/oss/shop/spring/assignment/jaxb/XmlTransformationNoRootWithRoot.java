@@ -7,7 +7,6 @@ import org.springframework.oxm.jaxb.Jaxb2Marshaller;
 import org.springframework.stereotype.Component;
 
 import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
 import javax.xml.namespace.QName;
 import javax.xml.transform.Result;
 import javax.xml.transform.stream.StreamResult;
@@ -17,10 +16,10 @@ import java.io.StringWriter;
 import java.util.HashMap;
 
 //@SpringBootApplication //uncomment if you wanna run Jaxb2Marshaller example
-public class XmlTransformationNoRoot {
+public class XmlTransformationNoRootWithRoot {
 
     public static void main(String[] args) {
-        SpringApplication.run(XmlTransformationNoRoot.class, args);
+        SpringApplication.run(XmlTransformationNoRootWithRoot.class, args);
     }
 
 }
@@ -28,17 +27,27 @@ public class XmlTransformationNoRoot {
 @Component
 class TestTransformation implements CommandLineRunner {
 
-    public void run(String[] args) throws JAXBException {
+    public void run(String[] args) {
 
+        //no root
         //marshalling
-        String testXML = marshallXml(new Partner("HelloWorld"));
+        String testXML = marshallXmlWithNoRoot(new Partner("HelloWorld"));
         System.out.println("Marshalled : " + testXML);
 
         //unmarshalling
-        System.out.println("Unmarshalled : " + unmarshallXml(testXML, Partner.class));
+        System.out.println("Unmarshalled : " + unmarshallXmlWithNoRoot(testXML, Partner.class));
+
+        //with root
+        //marshalling
+        testXML = marshallXmlWithRoot(new PartnerRequest("HelloWorld"));
+        System.out.println("Marshalled : " + testXML);
+
+        //unmarshalling
+        System.out.println("Unmarshalled : " + unmarshallXmlWithRoot(testXML));
     }
 
-    public <T> String marshallXml(T object) throws JAXBException {
+    @SuppressWarnings("unchecked")
+    private <T> String marshallXmlWithNoRoot(T object) {
         StringWriter sw = new StringWriter();
         Result result = new StreamResult(sw);
         jaxb2Marshaller().marshal(new JAXBElement(
@@ -48,19 +57,32 @@ class TestTransformation implements CommandLineRunner {
     }
 
     @SuppressWarnings("unchecked")
-    public <T> T unmarshallXml(String source, Class<T> clazz) throws JAXBException {
+    private <T> T unmarshallXmlWithNoRoot(String source, Class<T> clazz) {
         Jaxb2Marshaller marshaller = jaxb2Marshaller();
         //this line voids singleton use of Jaxb2Marshaller
         marshaller.setMappedClass(clazz);
         return (T) marshaller.unmarshal(new StreamSource(new StringReader(source)));
     }
 
-    public Jaxb2Marshaller jaxb2Marshaller() {
+    private String marshallXmlWithRoot(Object object) {
+        StringWriter sw = new StringWriter();
+        Result result = new StreamResult(sw);
+        jaxb2Marshaller().marshal(object, result);
+        return sw.toString();
+    }
+
+    private Object unmarshallXmlWithRoot(String source) {
+        Jaxb2Marshaller marshaller = jaxb2Marshaller();
+        return marshaller.unmarshal(new StreamSource(new StringReader(source)));
+    }
+
+    @SuppressWarnings("unchecked")
+    private Jaxb2Marshaller jaxb2Marshaller() {
         Jaxb2Marshaller marshaller = new Jaxb2Marshaller();
         marshaller.setMarshallerProperties(new HashMap() {{
             put(javax.xml.bind.Marshaller.JAXB_FORMATTED_OUTPUT, true);
         }});
-        marshaller.setClassesToBeBound(new Class[]{Partner.class});
+        marshaller.setClassesToBeBound(Partner.class, PartnerRequest.class);
         return marshaller;
     }
 }
